@@ -18,9 +18,12 @@ class Person{
             this.favLanguage= inst.favLanguage,
             this.catchPhrase= inst.catchPhrase
         }
-        demo(){
-
+        demo(subject){
+            return `Today we are learning about ${subject}`;
     }
+        grade(name, subject){
+            return `${name} receives a perfect score on ${subject}`
+        }
 }
 
         class PM extends Instructor{
@@ -29,33 +32,38 @@ class Person{
                 this.gradClassName= pm.gradClassName,
                 this.favInstructor= pm.favInstructor
             }
-            standUP(channel){
-                return `${this.name} announces to ${channel}, @channel standy times!`
+            standUP(name, channel){
+                return `${name} announces to ${channel}, @channel standy times!`
             }
-            debugsCode(obj, subj){
-                return `${this.name} debugs ${student.name}'s code on ${this.subject}`;
+            debugsCode(name, student, subj){
+                return `${name} debugs ${student}'s code on ${subj}`;
             }
         }
 
     class Student extends Person{
         constructor(stud){
             super(stud);
-            this.previousBackground,
-            this.className,
-            this.favSubjects
+            this.previousBackground= stud.previousBackground,
+            this.className= stud.className,
+            this.favSubjects= stud.favSubjects
         }
         listsSubjects(){
-            return `${this.favSubjects}`;
+            let returnstring = '';
+            this.favSubjects.forEach(list => {
+                returnstring += `I like ${list}! \n`;
+            })
+            return returnstring;
         }
-        PRAssignment(subject){
-            return `${this.Student.name} has submitted a PR for ${subject}`;
+        PRAssignment(name, subject){
+            return `${name} has submitted a PR for ${subject}`;
         }
-        springChallenge(subject){
-            return `${this.Student.name} has begun sprint challenge on ${subject}`
+        sprintChallenge(name, subject){
+            return `${name} has begun sprint challenge on ${subject}`
         }
     }
 
 ///////////////   INSTRUCTORS  ///////////////////////////////////////////////
+
 
     const roxas = new Instructor({
         name: 'Roxas',
@@ -81,7 +89,7 @@ class Person{
         location: 'Room 2',
         specialty: 'History',
         favLanguage: 'English',
-        catchPhrase: ''
+        catchPhrase: 'Whoever did that, I was not phased!'
     });
 
 ///////////   PROJECT MANAGERS     //////////////////////////////////////
@@ -156,3 +164,37 @@ class Person{
         className: 'CS6',
         favSubjects: ['Construction', 'Ignoring his boys', 'Working']
     });
+
+   console.log(roxas.speak());
+
+////////// INSTRUCTORS ///////////
+   
+    console.log(roxas.demo('Chemistry'));
+    console.log(puchner.demo('Anatomy'));
+    console.log(paloucek.demo('History'));
+    console.log(roxas.grade('Paul', "Chemistry"));
+    console.log(puchner.grade('Simon', 'Anatomy'));
+    console.log(paloucek.grade('Pat', 'History'));
+
+/////////  PROJECT MANAGERS ////////
+
+    console.log(erickson.standUP('Will', 'Web24'));
+    console.log(schmidt.standUP('Don', 'Web23'));
+    console.log(strubb.standUP('Sam', 'Web22'));
+    console.log(erickson.debugsCode('Will', 'Paul', 'HTML'));
+    console.log(schmidt.debugsCode('Don', 'Simon', 'CSS'));
+    console.log(strubb.debugsCode('Sam', 'Pat', 'JavaScript'));
+
+///////   STUDENTS  //////////
+    
+    console.log(paul.listsSubjects(paul.favSubjects));
+    console.log(simon.listsSubjects());
+    console.log(pat.listsSubjects());
+
+    console.log(paul.PRAssignment('Paul', 'Chemistry'));
+    console.log(simon.PRAssignment('Simon', 'Anatomy'));
+    console.log(pat.PRAssignment('Pat', 'History'));
+
+    console.log(paul.sprintChallenge('Paul', 'HTML'));
+    console.log(simon.sprintChallenge('Simon', 'CSS'));
+    console.log(pat.sprintChallenge('Pat', 'JavaScript'));
